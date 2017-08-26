@@ -19,17 +19,21 @@ public:
 
 	void FeedForward(const Layer& aPrevLayer);
 	void CalcOutputGradients(double aTargetValue);
-	void CalcHiddenGradients(const Layer& aLayer);
-	void UpdateInputWeights(const Layer& aLayer);
+	void CalcHiddenGradients(const Layer& aNextLayer);
+	void UpdateInputWeights(Layer& aPrevLayer);
 
 	inline static double RandomWeight();
 	inline static double ActivationFunction(double aSum);
 	inline static double ActivationFunctionDerivative(double aSum);
 
+private:
+	double SumDOW(const Layer& aNextLayer) const;
 
 private:
 	double myOutputVal;
 	double myGradient;
+	static double eta;    // [0.0 .. 1.0] overall net training rate.
+	static double alpha; // [0.0 .. n] multiplier of last weight change (momentum).
 	std::vector<Connection> myOutputWeights;
 	unsigned int myIndex;
 };

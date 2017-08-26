@@ -115,4 +115,5 @@ void CNeuralNet::BackProp(const std::vector<double>& aTargetValues)
 
 void CNeuralNet::GetResults(std::vector<double> aResultValues) const
 {
+
 }
