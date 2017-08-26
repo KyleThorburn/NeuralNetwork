@@ -2,8 +2,8 @@
 
 #include <vector>
 
-class CNeuron;
-
+//class CNeuron;
+#include "Neuron.h"
 typedef std::vector<CNeuron> Layer;
 
 class CNeuralNet

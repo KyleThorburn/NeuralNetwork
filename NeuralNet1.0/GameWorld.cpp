@@ -11,8 +11,8 @@ CGameWorld::CGameWorld()
 
 CGameWorld::~CGameWorld()
 {
-
 	delete myNeuralNet;
+	myNeuralNet = nullptr;
 }
 
 void CGameWorld::Init(sf::RenderWindow* aWindow)
