@@ -10,7 +10,7 @@ public:
 
 	void FeedForward(const std::vector<double>& aInputValues);
 	void BackProp(const std::vector<double>& aTargetValues);
-	void GetResults(std::vector<double> aResultValues) const;
+	void GetResults(std::vector<double>& aResultValues);
 
 private:
 	std::vector<Layer> myLayers;

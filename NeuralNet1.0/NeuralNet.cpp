@@ -113,7 +113,12 @@ void CNeuralNet::BackProp(const std::vector<double>& aTargetValues)
 	}
 }
 
-void CNeuralNet::GetResults(std::vector<double> aResultValues) const
+void CNeuralNet::GetResults(std::vector<double>& aResultValues)
 {
+	aResultValues.clear();
 
+	for (unsigned int n = 0; n < myLayers.back().size() - 1; ++n)
+	{
+		aResultValues.push_back(myLayers.back()[n].GetOutputValue());
+	}
 }
