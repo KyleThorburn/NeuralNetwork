@@ -33,3 +33,8 @@ void CNeuron::FeedForward(const Layer & aPrevLayer)
 
 	myOutputVal = CNeuron::ActivationFunction(sum);
 }
+
+void CNeuron::CalcOutputGradients(double aTargetValues)
+{
+
+}

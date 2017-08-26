@@ -57,17 +57,39 @@ void CNeuralNet::FeedForward(const std::vector<double>& aInputValues)
 
 }
 
-void CNeuralNet::BackProp(const std::vector<double>& aVal)
+void CNeuralNet::BackProp(const std::vector<double>& aTargetValues)
 {
-	// Calculate overall net error. (Root Mean Square of output neuron errors)
+	// Calculate overall net error. ("Root Mean Square" of output neuron errors)
+
+	Layer& outputLayer = myLayers.back();
+	myError = 0.0;
+										//not including the bias
+	for (unsigned int n = 0; n < outputLayer.size() - 1; ++n)
+	{
+		double delta = aTargetValues[n] - outputLayer[n].GetOutputValue();
+		myError += delta * delta;
+	}
+
+	myError /= outputLayer.size() - 1;
+	myError = sqrt(myError); // get avg.squared  (RMS)
+
+	// Recent avg. measurement.
+	myRecentAvgError = (myRecentAvgError * myRecentAvgSmoothingFactor + myError)
+		/ (myRecentAvgSmoothingFactor + 1);
+
 
 	// Calculate layer gradients
+
+	for (unsigned int n = 0; n < outputLayer.size() - 1; ++n)
+	{
+		outputLayer[n].CalcOutputGradients(aTargetValues[n]);
+	}
 
 	// Calculate gradients on hidden layers.
 
 	// for all layers: first hidden -> output .. update connection weights.
 }
 
-void CNeuralNet::GetResults(std::vector<double> aResultVal) const
+void CNeuralNet::GetResults(std::vector<double> aResultValues) const
 {
 }

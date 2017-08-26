@@ -8,10 +8,13 @@ class CNeuralNet
 public:
 	CNeuralNet(const std::vector<unsigned int>& aTopology);
 
-	void FeedForward(const std::vector<double>& aVal);
-	void BackProp(const std::vector<double>& aVal);
-	void GetResults(std::vector<double> aResultVal) const;
+	void FeedForward(const std::vector<double>& aInputValues);
+	void BackProp(const std::vector<double>& aTargetValues);
+	void GetResults(std::vector<double> aResultValues) const;
 
 private:
 	std::vector<Layer> myLayers;
+	double myError;
+	double myRecentAvgError;
+	double myRecentAvgSmoothingFactor;
 };

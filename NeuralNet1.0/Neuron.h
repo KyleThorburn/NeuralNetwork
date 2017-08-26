@@ -18,6 +18,7 @@ public:
 	inline double GetOutputValue() { return myOutputVal; }
 
 	void FeedForward(const Layer& aPrevLayer);
+	void CalcOutputGradients(double aTargetValues);
 
 	inline static double RandomWeight();
 	inline static double ActivationFunction(double aSum);
