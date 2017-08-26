@@ -2,10 +2,9 @@
 
 
 
-CNeuron::CNeuron()
+CNeuron::CNeuron(unsigned int aNrOfOutputs)
 {
 }
-
 
 CNeuron::~CNeuron()
 {
