@@ -1,10 +1,7 @@
 #pragma once
-
 #include <vector>
 
-//class CNeuron;
 #include "Neuron.h"
-typedef std::vector<CNeuron> Layer;
 
 class CNeuralNet
 {
