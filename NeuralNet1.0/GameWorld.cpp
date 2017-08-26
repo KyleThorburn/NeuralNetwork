@@ -42,15 +42,15 @@ void CGameWorld::Render()
 	myWindow->display();
 }
 
+static unsigned int trainingPass = 0;
+
 void CGameWorld::Update()
 {
-	std::vector<double> inputValues;
+	std::vector<double> inputValues, targetValues, resultValues;
+
+
 	myNeuralNet->FeedForward(inputValues);
-
-	std::vector<double> targetValues;
 	myNeuralNet->BackProp(targetValues);
-
-	std::vector<double> resultValues;
 	myNeuralNet->GetResults(resultValues);
 
 }

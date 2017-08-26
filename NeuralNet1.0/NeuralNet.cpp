@@ -30,6 +30,9 @@ CNeuralNet::CNeuralNet(const std::vector<unsigned int>& aTopology)
 				std::cout << "Made a bias-neuron!\n";
 		}
 		std::cout << "\n";
+
+		// force bias neuron's output value to 1.0.
+		myLayers.back().back().SetOutputValue(1.0);
 	}
 }
 
