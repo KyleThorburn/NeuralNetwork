@@ -87,7 +87,30 @@ void CNeuralNet::BackProp(const std::vector<double>& aTargetValues)
 
 	// Calculate gradients on hidden layers.
 
+									//rightmost hidden layer
+	for (unsigned int layerNum = myLayers.size() - 2; layerNum > 0; --layerNum)
+	{
+		Layer& hiddenLayer = myLayers[layerNum];
+		Layer& nextLayer = myLayers[layerNum + 1];
+
+		for (unsigned int n = 0; n < hiddenLayer.size(); ++n)
+		{
+			hiddenLayer[n].CalcHiddenGradients(nextLayer);
+		}
+	}
+
 	// for all layers: first hidden -> output .. update connection weights.
+
+	for (unsigned int layerNum = myLayers.size() - 1; layerNum > 0; --layerNum)
+	{
+		Layer& currLayer = myLayers[layerNum];
+		Layer& prevLayer = myLayers[layerNum - 1];
+
+		for (unsigned int n = 0; n < currLayer.size() - 1; ++n)
+		{
+			currLayer[n].UpdateInputWeights(prevLayer);
+		}
+	}
 }
 
 void CNeuralNet::GetResults(std::vector<double> aResultValues) const

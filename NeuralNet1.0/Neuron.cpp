@@ -34,7 +34,17 @@ void CNeuron::FeedForward(const Layer & aPrevLayer)
 	myOutputVal = CNeuron::ActivationFunction(sum);
 }
 
-void CNeuron::CalcOutputGradients(double aTargetValues)
+void CNeuron::CalcOutputGradients(double aTargetValue)
+{
+	double delta = aTargetValue - myOutputVal;
+	myGradient = delta * CNeuron::ActivationFunctionDerivative(myOutputVal);
+}
+
+void CNeuron::CalcHiddenGradients(const Layer & aLayer)
 {
 
+}
+
+void CNeuron::UpdateInputWeights(const Layer & aLayer)
+{
 }

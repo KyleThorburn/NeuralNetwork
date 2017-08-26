@@ -18,7 +18,9 @@ public:
 	inline double GetOutputValue() { return myOutputVal; }
 
 	void FeedForward(const Layer& aPrevLayer);
-	void CalcOutputGradients(double aTargetValues);
+	void CalcOutputGradients(double aTargetValue);
+	void CalcHiddenGradients(const Layer& aLayer);
+	void UpdateInputWeights(const Layer& aLayer);
 
 	inline static double RandomWeight();
 	inline static double ActivationFunction(double aSum);
@@ -27,6 +29,7 @@ public:
 
 private:
 	double myOutputVal;
+	double myGradient;
 	std::vector<Connection> myOutputWeights;
 	unsigned int myIndex;
 };
