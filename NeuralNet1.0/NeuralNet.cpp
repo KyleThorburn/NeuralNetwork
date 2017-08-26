@@ -1,6 +1,8 @@
 #include "NeuralNet.h"
 //#include "Neuron.h"
 
+#include <assert.h>
+
 #include <iostream>
 
 CNeuralNet::CNeuralNet(const std::vector<unsigned int>& aTopology)
@@ -12,7 +14,7 @@ CNeuralNet::CNeuralNet(const std::vector<unsigned int>& aTopology)
 		myLayers.push_back(Layer());
 
 		unsigned int numOfOutputs;
-		if (layerNum == aTopology.size())
+		if (layerNum == aTopology.size() - 1)
 			numOfOutputs = 0;
 		else
 			numOfOutputs = aTopology[layerNum + 1];
@@ -31,8 +33,10 @@ CNeuralNet::CNeuralNet(const std::vector<unsigned int>& aTopology)
 	}
 }
 
-void CNeuralNet::FeedForward(const std::vector<double>& aVal)
+void CNeuralNet::FeedForward(const std::vector<double>& aInputValues)
 {
+	assert(aInputValues.size() == myLayers[0].size() - 1 && 
+		"The number of input values is not the same as the number of input neurons");
 }
 
 void CNeuralNet::BackProp(const std::vector<double>& aVal)

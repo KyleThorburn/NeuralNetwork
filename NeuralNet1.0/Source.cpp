@@ -1,11 +1,13 @@
 #include <iostream>
-
+#include <ctime>
 #include "GameWorld.h"
 
 #define VERSION 1.0
 
 int main()
 {
+	srand(time(0));
+
 	sf::RenderWindow window(sf::VideoMode(800, 600), "NeuralNet " + std::to_string(VERSION));
 
 	CGameWorld cGameWorld;

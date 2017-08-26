@@ -11,11 +11,16 @@ struct Connection
 class CNeuron
 {
 public:
-	CNeuron(unsigned int aNrOfOutputs);
+	CNeuron(unsigned int aNumOfOutputs);
 	~CNeuron();
+	inline static double RandomWeight();
 
 private:
 	double myOutputVal;
 	std::vector<Connection> myOutputWeights;
 };
 
+double CNeuron::RandomWeight()
+{
+	return rand() / double(RAND_MAX);
+}
